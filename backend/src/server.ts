@@ -1,5 +1,6 @@
 import express from "express";
-import usuariosRouter from "./routes/usuarios";
+import usuariosRouter from "./routes/usuarios.js";
+import "dotenv/config";
 
 const app = express();
 app.use(express.json());
