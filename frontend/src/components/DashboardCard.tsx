@@ -6,7 +6,7 @@ type DashboardCardProps = {
 
 function DashboardCard({ titulo, valor }: DashboardCardProps) {
   return (
-    <div className="card">
+    <div className="stat-card">
       <h2>{titulo}</h2>
       <p>{valor}</p>
     </div>

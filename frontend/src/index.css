@@ -19,3 +19,53 @@ body {
   background-color: var(--zn-bg);
   color: var(--zn-text);
 }
+
+/* Bootstrap 5.3 (tema escuro) alinhado à paleta oficial do Zenith */
+:root {
+  --bs-body-bg: var(--zn-bg);
+  --bs-body-color: var(--zn-text);
+  --bs-border-color: var(--zn-border);
+  --bs-secondary-color: var(--zn-text-muted);
+  --bs-link-color: var(--zn-accent);
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--zn-accent);
+  --bs-btn-border-color: var(--zn-accent);
+  --bs-btn-hover-bg: #3f67e0;
+  --bs-btn-hover-border-color: #3f67e0;
+  --bs-btn-active-bg: #3558c4;
+  --bs-btn-active-border-color: #3558c4;
+}
+
+.card {
+  --bs-card-bg: var(--zn-surface);
+  --bs-card-border-color: var(--zn-border);
+}
+
+.form-control,
+.form-control:focus {
+  background-color: var(--zn-bg);
+  color: var(--zn-text);
+  border-color: var(--zn-border);
+}
+
+.form-control:focus {
+  border-color: var(--zn-accent);
+  box-shadow: 0 0 0 0.2rem rgba(79, 124, 255, 0.25);
+}
+
+.progress {
+  --bs-progress-bg: var(--zn-border);
+  --bs-progress-bar-bg: var(--zn-accent);
+}
+
+.pagina {
+  padding: 32px 0 64px;
+}
+
+.pagina-auth {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
