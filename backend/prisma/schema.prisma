@@ -1,3 +1,4 @@
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,4 +14,26 @@ model Usuario {
   email     String   @unique
   senhaHash String
   createdAt DateTime @default(now())
+
+  metas     Meta[]
+}
+
+model Meta {
+  id         String     @id @default(uuid())
+  nome       String
+  categoria  String
+  valor_alvo Float
+  usuarioId  String
+
+  usuario    Usuario    @relation(fields: [usuarioId], references: [id])
+  registros  Registro[]
+}
+
+model Registro {
+  id           String   @id @default(uuid())
+  metaId       String
+  valor        Float
+  dataRegistro DateTime @default(now())
+
+  meta         Meta     @relation(fields: [metaId], references: [id])
 }
