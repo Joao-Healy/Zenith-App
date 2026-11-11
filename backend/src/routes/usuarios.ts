@@ -1,17 +1,9 @@
 import { Router } from "express";
 import type { Request, Response } from "express";
-import { ErroHttp } from "../errors/ErroHttp.js";
 import { autenticarUsuario, cadastrarUsuario } from "../services/usuarios.js";
+import { responderErro } from "../utils/responderErro.js";
 
 const router = Router();
-
-function responderErro(res: Response, erro: unknown, contexto: string) {
-  if (erro instanceof ErroHttp) {
-    return res.status(erro.status).json({ erro: erro.message });
-  }
-  console.error(`Erro em ${contexto}:`, erro);
-  return res.status(500).json({ erro: "Erro interno do servidor." });
-}
 
 // RF-001 – Cadastro
 router.post("/usuarios", async (req: Request, res: Response) => {
