@@ -1,0 +1,11 @@
+node_modules/
+.env
+.env.*
+!.env.example
+dist/
+
+# Skills de agentes de IA geradas pelo Prisma (não fazem parte do app)
+.claude/
+.windsurf/
+.agents/
+skills-lock.json
