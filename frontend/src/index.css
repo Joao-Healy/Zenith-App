@@ -1,17 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root {
+  --zn-bg: #0f1115;
+  --zn-surface: #171a21;
+  --zn-border: #252933;
+  --zn-text: #f5f7fa;
+  --zn-text-muted: #9ba3af;
+  --zn-accent: #4f7cff;
+  --zn-success: #10b981;
+  --zn-warning: #f59e0b;
+  --zn-error: #ef4444;
 }
 
 body {
   min-width: 320px;
   min-height: 100vh;
-  font-family: Arial, sans-serif;
-  background-color: #0f172a;
+  font-family: "Inter", system-ui, sans-serif;
+  background-color: var(--zn-bg);
+  color: var(--zn-text);
 }
 
-button {
-  font-family: inherit;
+/* Bootstrap 5.3 (tema escuro) alinhado à paleta oficial do Zenith */
+:root {
+  --bs-body-bg: var(--zn-bg);
+  --bs-body-color: var(--zn-text);
+  --bs-border-color: var(--zn-border);
+  --bs-secondary-color: var(--zn-text-muted);
+  --bs-link-color: var(--zn-accent);
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--zn-accent);
+  --bs-btn-border-color: var(--zn-accent);
+  --bs-btn-hover-bg: #3f67e0;
+  --bs-btn-hover-border-color: #3f67e0;
+  --bs-btn-active-bg: #3558c4;
+  --bs-btn-active-border-color: #3558c4;
+}
+
+.card {
+  --bs-card-bg: var(--zn-surface);
+  --bs-card-border-color: var(--zn-border);
+}
+
+.form-control,
+.form-control:focus {
+  background-color: var(--zn-bg);
+  color: var(--zn-text);
+  border-color: var(--zn-border);
+}
+
+.form-control:focus {
+  border-color: var(--zn-accent);
+  box-shadow: 0 0 0 0.2rem rgba(79, 124, 255, 0.25);
+}
+
+.progress {
+  --bs-progress-bg: var(--zn-border);
+  --bs-progress-bar-bg: var(--zn-accent);
+}
+
+.pagina {
+  padding: 32px 0 64px;
+}
+
+.pagina-auth {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }

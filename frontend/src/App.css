@@ -1,137 +1,58 @@
-
-/* Configuração principal */
 #root {
   width: 100%;
   min-height: 100vh;
 }
 
+/* Dashboard */
 .dashboard {
-  min-height: 100vh;
-  padding: 40px;
-  background-color: #0f172a;
-  color: #f8fafc;
+  padding: 40px 0 64px;
+  color: var(--zn-text);
 }
 
-/* Cabeçalho */
 .dashboard-header {
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
 .dashboard-header h1 {
-  font-size: 36px;
-  margin-bottom: 10px;
-  color: #38bdf8;
+  font-size: 32px;
+  margin-bottom: 8px;
 }
 
 .dashboard-header p {
   font-size: 16px;
-  color: #94a3b8;
+  color: var(--zn-text-muted);
 }
 
-/* Cards do Dashboard */
-.dashboard-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-.card {
-  background-color: #1e293b;
+.stat-card {
+  background-color: var(--zn-surface);
   padding: 25px;
   border-radius: 12px;
-  border: 1px solid #334155;
+  border: 1px solid var(--zn-border);
   transition: transform 0.2s;
 }
 
-.card:hover {
+.stat-card:hover {
   transform: translateY(-5px);
 }
 
-.card h2 {
+.stat-card h2 {
   font-size: 16px;
-  color: #94a3b8;
+  color: var(--zn-text-muted);
   margin-bottom: 15px;
 }
 
-.card p {
+.stat-card p {
   font-size: 32px;
   font-weight: bold;
-  color: #38bdf8;
+  color: var(--zn-accent);
 }
 
-/* Próximas tarefas */
-.tarefas-section {
-  margin-top: 40px;
-}
-
-.tarefas-section h2 {
-  font-size: 22px;
-  margin-bottom: 20px;
-  color: #f8fafc;
-}
-
-.tarefas-lista {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.tarefa-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  padding: 18px 20px;
-  background-color: #1e293b;
-  border: 1px solid #334155;
-  border-radius: 10px;
-  color: #f8fafc;
-}
-
-.tarefa-item span:nth-child(2) {
-  color: #38bdf8;
-  white-space: nowrap;
-}
-
-/* Botão concluir */
-.tarefa-item button {
-  padding: 10px 16px;
-  background-color: #0284c7;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.tarefa-item button:hover {
-  background-color: #0369a1;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  .dashboard {
-    padding: 20px;
-  }
-
-  .dashboard-cards {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .tarefa-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-
-/* Progresso das tarefas */
+/* Progresso geral */
 .progresso-section {
   margin-top: 30px;
   padding: 24px;
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: var(--zn-surface);
+  border: 1px solid var(--zn-border);
   border-radius: 12px;
 }
 
@@ -144,33 +65,17 @@
 
 .progresso-header h2 {
   font-size: 20px;
-  color: #f8fafc;
+  color: var(--zn-text);
 }
 
 .progresso-header span {
-  color: #38bdf8;
+  color: var(--zn-accent);
   font-size: 20px;
   font-weight: bold;
-}
-
-.progresso-barra {
-  width: 100%;
-  height: 12px;
-  background-color: #334155;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.progresso-preenchimento {
-  height: 100%;
-  background-color: #38bdf8;
-  border-radius: 20px;
-  transition: width 0.3s ease;
 }
 
 .progresso-section p {
   margin-top: 12px;
   font-size: 14px;
-  color: #94a3b8;
+  color: var(--zn-text-muted);
 }
-

@@ -1,48 +1,30 @@
+import { prisma } from "../lib/prisma.js";
 
-import { PrismaClient } from "@prisma/client";
+export async function buscarResumoDashboard(usuarioId: string) {
+  const metas = await prisma.meta.findMany({
+    where: { usuarioId },
+    select: {
+      valorAlvo: true,
+      registros: { select: { valor: true } },
+    },
+  });
 
-const prisma = new PrismaClient();
+  const totalRegistros = metas.reduce(
+    (soma, meta) => soma + meta.registros.length,
+    0,
+  );
 
-export async function buscarResumoDashboard() {
-  const [metas, registros] = await Promise.all([
-    prisma.meta.findMany({
-      include: {
-        registros: true
-      }
-    }),
-    prisma.registro.count()
-  ]);
-
-  let concluidas = 0;
-
-  for (const meta of metas) {
-    const progresso = meta.registros.reduce(
-      (total, registro) => total + registro.valor,
-      0
-    );
-
-    if (progresso >= meta.valor_alvo) {
-      concluidas++;
-    }
-  }
+  const concluidas = metas.filter((meta) => {
+    const progresso = meta.registros.reduce((soma, r) => soma + r.valor, 0);
+    return progresso >= meta.valorAlvo;
+  }).length;
 
   const total = metas.length;
-  const emAndamento = total - concluidas;
-
-  const progressoGeral =
-    total > 0
-      ? Math.round((concluidas / total) * 100)
-      : 0;
+  const progressoGeral = total > 0 ? Math.round((concluidas / total) * 100) : 0;
 
   return {
-    metas: {
-      total,
-      concluidas,
-      emAndamento
-    },
-    registros: {
-      total: registros
-    },
-    progressoGeral
+    metas: { total, concluidas, emAndamento: total - concluidas },
+    registros: { total: totalRegistros },
+    progressoGeral,
   };
 }

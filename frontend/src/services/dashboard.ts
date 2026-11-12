@@ -1,3 +1,4 @@
+import { requisitar } from './api'
 
 export type DashboardDados = {
   metas: {
@@ -11,12 +12,4 @@ export type DashboardDados = {
   progressoGeral: number
 }
 
-export async function buscarDashboard(): Promise<DashboardDados> {
-  const resposta = await fetch('/api/dashboard')
-
-  if (!resposta.ok) {
-    throw new Error('Erro ao carregar o Dashboard')
-  }
-
-  return resposta.json()
-}
+export const buscarDashboard = () => requisitar<DashboardDados>('/dashboard')
