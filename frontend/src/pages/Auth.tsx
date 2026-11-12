@@ -30,7 +30,10 @@ function Auth({ aoEntrar }: AuthProps) {
     setEnviando(true)
 
     try {
-      if (ehCadastro) await cadastrar(nome, email, senha)
+      if (ehCadastro) {
+        await cadastrar(nome, email, senha)
+        setModo('login') // conta criada: se o login falhar, a nova tentativa não repete o cadastro
+      }
       const { token } = await entrar(email, senha)
       salvarToken(token)
       aoEntrar()

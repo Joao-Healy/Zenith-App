@@ -47,7 +47,9 @@ function validarDadosMeta(dados: Record<string, unknown>): DadosMeta {
 
 function formatarMeta<T extends { registros: { valor: number }[] }>(meta: T) {
   const { registros, ...dadosDaMeta } = meta;
-  const progresso = registros.reduce((soma, r) => soma + r.valor, 0);
+  const soma = registros.reduce((total, r) => total + r.valor, 0);
+  // Float acumula erro (0.1 + 0.2 = 0.30000000000000004): arredonda a 2 casas.
+  const progresso = Math.round(soma * 100) / 100;
   return { ...dadosDaMeta, progresso };
 }
 

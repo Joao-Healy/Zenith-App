@@ -1,38 +1,26 @@
-
-/* Configuração principal */
 #root {
   width: 100%;
   min-height: 100vh;
 }
 
+/* Dashboard */
 .dashboard {
-  min-height: 100vh;
-  padding: 40px;
-  background-color: var(--zn-bg);
+  padding: 40px 0 64px;
   color: var(--zn-text);
 }
 
-/* Cabeçalho */
 .dashboard-header {
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
 .dashboard-header h1 {
-  font-size: 36px;
-  margin-bottom: 10px;
-  color: var(--zn-accent);
+  font-size: 32px;
+  margin-bottom: 8px;
 }
 
 .dashboard-header p {
   font-size: 16px;
   color: var(--zn-text-muted);
-}
-
-/* Cards do Dashboard */
-.dashboard-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
 }
 
 .stat-card {
@@ -59,74 +47,7 @@
   color: var(--zn-accent);
 }
 
-/* Próximas tarefas */
-.tarefas-section {
-  margin-top: 40px;
-}
-
-.tarefas-section h2 {
-  font-size: 22px;
-  margin-bottom: 20px;
-  color: var(--zn-text);
-}
-
-.tarefas-lista {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.tarefa-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  padding: 18px 20px;
-  background-color: var(--zn-surface);
-  border: 1px solid var(--zn-border);
-  border-radius: 10px;
-  color: var(--zn-text);
-}
-
-.tarefa-item span:nth-child(2) {
-  color: var(--zn-accent);
-  white-space: nowrap;
-}
-
-/* Botão concluir */
-.tarefa-item button {
-  padding: 10px 16px;
-  background-color: #0284c7;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.tarefa-item button:hover {
-  background-color: #0369a1;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  .dashboard {
-    padding: 20px;
-  }
-
-  .dashboard-cards {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .tarefa-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-
-/* Progresso das tarefas */
+/* Progresso geral */
 .progresso-section {
   margin-top: 30px;
   padding: 24px;
@@ -153,24 +74,8 @@
   font-weight: bold;
 }
 
-.progresso-barra {
-  width: 100%;
-  height: 12px;
-  background-color: var(--zn-border);
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.progresso-preenchimento {
-  height: 100%;
-  background-color: var(--zn-accent);
-  border-radius: 20px;
-  transition: width 0.3s ease;
-}
-
 .progresso-section p {
   margin-top: 12px;
   font-size: 14px;
   color: var(--zn-text-muted);
 }
-

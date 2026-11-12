@@ -12,6 +12,12 @@ import {
 
 const SALT_ROUNDS = 10;
 const TAMANHO_MINIMO_SENHA = 8;
+// O bcrypt só considera os primeiros 72 bytes; acima disso a senha seria truncada em silêncio.
+const TAMANHO_MAXIMO_SENHA_BYTES = 72;
+
+// Hash descartável: usado quando o e-mail não existe, para o login levar o mesmo
+// tempo nos dois casos e não revelar quais e-mails estão cadastrados.
+const HASH_FALSO = bcrypt.hashSync("senha-descartavel", SALT_ROUNDS);
 const VALIDADE_TOKEN = "1h";
 
 export async function cadastrarUsuario(dados: {
@@ -25,11 +31,12 @@ export async function cadastrarUsuario(dados: {
     !ehTextoNaoVazio(nome) ||
     !ehEmailValido(email) ||
     typeof senha !== "string" ||
-    senha.length < TAMANHO_MINIMO_SENHA
+    senha.length < TAMANHO_MINIMO_SENHA ||
+    Buffer.byteLength(senha) > TAMANHO_MAXIMO_SENHA_BYTES
   ) {
     throw new ErroHttp(
       400,
-      `Informe nome, e-mail válido e senha com no mínimo ${TAMANHO_MINIMO_SENHA} caracteres.`,
+      `Informe nome, e-mail válido e senha entre ${TAMANHO_MINIMO_SENHA} e ${TAMANHO_MAXIMO_SENHA_BYTES} caracteres.`,
     );
   }
 
@@ -61,9 +68,10 @@ export async function autenticarUsuario(dados: { email: unknown; senha: unknown 
     where: { email: normalizarEmail(email) },
   });
 
-  // Mesma mensagem para "não existe" e "senha errada": não revela quais e-mails existem.
-  const senhaCorreta =
-    usuario !== null && (await bcrypt.compare(senha, usuario.senhaHash));
+  // Sempre executa o bcrypt (mesmo sem usuário) e usa a mesma mensagem nos dois
+  // casos: não revela quais e-mails existem, nem pela resposta nem pelo tempo.
+  const hashParaComparar = usuario?.senhaHash ?? HASH_FALSO;
+  const senhaCorreta = await bcrypt.compare(senha, hashParaComparar);
 
   if (!usuario || !senhaCorreta) {
     throw new ErroHttp(401, "E-mail ou senha inválidos.");

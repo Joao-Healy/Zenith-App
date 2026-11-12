@@ -32,8 +32,8 @@ function Dashboard() {
     <main className="dashboard">
       <Container>
         <header className="dashboard-header">
-          <h1>Zenith</h1>
-          <p>Bem-vindo ao seu Dashboard Central!</p>
+          <h1>Dashboard</h1>
+          <p>Seu progresso em um só lugar.</p>
         </header>
 
         <section className="dashboard-api">
